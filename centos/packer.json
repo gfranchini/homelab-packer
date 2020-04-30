@@ -54,13 +54,9 @@
 
       "iso_paths": ["{{user `iso_url`}}"],
       "floppy_files": ["ks.cfg"],
-      "boot_command": [
-        "<esc><wait>",
-        "linux ks=hd:fd0:/ks.cfg<enter>"
-      ]
+      "boot_command": ["<esc> <wait> linux inst.text inst.ks=hd:fd0:/ks.cfg <enter>"]
     }
   ],
-
   "provisioners": [
     {
       "type": "shell",
