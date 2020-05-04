@@ -1,0 +1,7 @@
+# Ignore Mac things
+.DS_Store
+
+# Ignore exported VM files
+centos/output_vsphere/centos7/*.vmdk
+centos/output_vsphere/centos7/*.mf
+centos/output_vsphere/centos7/*.ovf
