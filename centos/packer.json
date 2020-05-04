@@ -31,6 +31,10 @@
 
       "vm_name": "{{user `vm-name`}}",
       "notes": "Built via Packer",
+      "export": {
+        "force": true,
+        "output_directory": "./output_vsphere/centos7"
+      },
 
       "boot_wait": "10s",
       "boot_order": "disk,cdrom,floppy",
