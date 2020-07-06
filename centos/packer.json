@@ -8,8 +8,8 @@
     "vsphere-network": "VM Network",
     "vsphere-datastore": "DigistroESXiLocal01",
 
-    "vm-name": "CentOS7-Template",
-    "vm-cpu-num": "2",
+    "vm-name": "CentOS7-Digistro-Template",
+    "vm-cpu-num": "4",
     "vm-mem-size": "2048",
     "vm-disk-size": "16600",
     "iso_url": "[DigistroESXiLocal01] ISO-Linux/CentOS-7-x86_64-Minimal-1908.iso"
@@ -58,7 +58,6 @@
         "force": true,
         "output_directory": "./output_vsphere/centos7"
       }
-
     }
   ]
 }
