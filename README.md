@@ -20,3 +20,6 @@ packer build packer.json
 2. While configuring, the kickstart file will install packages and will then use the post installation script to install vmware tools so that Packer can continue manipulating the host (via SSH).
 3. Packer will shutdown the machine after it's done being made.
 4. From there, we can take our exported .ovf template and upload it to vSphere for later use.
+5. You can ssh into the built VM by using:
+* username: root
+* password: password
