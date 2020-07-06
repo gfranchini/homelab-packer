@@ -6,9 +6,12 @@ This builder uses the vSphere API, and creates virtual machines remotely. It sta
 
 The way this is currently working is that I have ESXi 7.0.0 (Build 15843807) running (without a license). I have uploaded a generic CentOS-7 minimal ISO that is used as a template to build on top of. Because we're using the unlicensed version of vSphere, we cannot create an ISO template natively, so the next best thing is to build this image on vSphere, export it to the machine running packer, and then manually upload the built iso into the vSphere datastore under `DigistroESXiLocal01 > ISO_Templates > centos7 > CentOS7-Digistro-Template`
 
+Currently only have a build for CentOS. Ubuntu coming soon.
+
 ### Usage:
 
 ```bash
+cd centos
 packer build packer.json
 ```
 
