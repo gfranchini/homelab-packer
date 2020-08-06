@@ -1,0 +1,59 @@
+#version=DEVEL
+# System authorization information
+auth --enableshadow --passalgo=sha512
+# Use CDROM installation media
+install
+cdrom
+# Use graphical install
+#graphical
+# Run the Setup Agent on first boot
+firstboot --enable
+ignoredisk --only-use=sda
+# Keyboard layouts
+keyboard --vckeymap=us --xlayouts='us'
+# System language
+lang en_US.UTF-8
+
+# Network information
+network  --bootproto=dhcp --device=ens192 --ipv6=auto --activate
+network  --hostname=localhost.digistro.local
+
+# Root password
+rootpw --iscrypted $6$hVQfgY3e653phwNY$F3gytxIot0fQt5WyBy.CE02Sl4.Bc/xyVkD0cR/7R0gAK.YN4APlii16DDJZ0HS/1hVcCjFgKFpn.2J4Tdoh0/
+# System services
+services --enabled="chronyd"
+# System timezone
+timezone America/New_York --isUtc
+# System bootloader configuration
+bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=sda
+autopart --type=lvm
+# Partition clearing information
+clearpart --none --initlabel
+
+
+# Optional settings
+firewall --disabled
+selinux --disabled
+
+
+### Packages selection
+%packages
+@^minimal
+@core
+chrony
+kexec-tools
+%end
+
+### Post installation
+%post --log=/var/log/ks-post.log
+yum install -y open-vm-tools
+systemctl enable vmtoolsd
+systemctl start vmtoolsd
+yum install -y vim
+yum install -y redhat-lsb-core
+yum upgrade -y
+%end
+
+# Reboot after the installation is complete (optional)
+# --eject	attempt to eject CD or DVD media before rebooting
+reboot --eject
