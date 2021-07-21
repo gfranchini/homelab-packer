@@ -1,7 +1,18 @@
-# Ignore Mac things
-.DS_Store
+# Cache objects
+packer_cache/
+
+# Crash log
+crash.log
+
+# For built boxes
+*.box
 
 # Ignore exported VM files
 centos/output_vsphere/centos7/*.vmdk
 centos/output_vsphere/centos7/*.mf
 centos/output_vsphere/centos7/*.ovf
+
+# Ignore Mac things
+.DS_Store
+
+
