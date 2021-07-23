@@ -1,18 +1,28 @@
 {
   "variables": {
-    "username": "root@pam",
-    "password": "{{env `PM_PASS`}}"
+    "promox_username": "root@pam",
+    "proxmox_password": "{{env `PM_PASS`}}",
+    "proxmox_url": "https://10.0.20.10:8006/api2/json",
+    "proxmox_node": "pve",
+    "proxmox_storage_pool": "local-lvm",
+    "proxmox_storage_pool_type": "lvm-thin",
+    "proxmox_storage_format": "raw",
+    "proxmox_iso_pool": "local:iso",
+    "centos_image": "CentOS-7-x86_64-Minimal-2003.iso",
+    "template_name": "CentOS7-Packer-Template",
+    "template_description": "CentOS 7 Template",
+    "version": ""
   },
 
   "builders": [
     {
       "type": "proxmox",
-      "proxmox_url": "https://10.0.20.10:8006/api2/json",
+      "proxmox_url": "{{user `proxmox_url`}}",
+      "username": "{{user `promox_username`}}",
+      "password": "{{user `proxmox_password`}}",
       "insecure_skip_tls_verify": true,
-      "username": "{{user `username`}}",
-      "password": "{{user `password`}}",
-
-      "node": "pve",
+      "node": "{{user `proxmox_node`}}",
+      "os": "l26",
       "network_adapters": [
         {
           "bridge": "vmbr0",
@@ -21,30 +31,32 @@
       ],
       "disks": [
         {
-          "type": "virtio",
-          "disk_size": "10G",
-          "storage_pool": "local-Proxmox",
-          "storage_pool_type": "lvm"
+          "type": "scsi",
+          "disk_size": "8G",
+          "storage_pool": "{{user `proxmox_storage_pool`}}",
+          "storage_pool_type": "{{user `proxmox_storage_pool_type`}}",
+          "format": "{{user `proxmox_storage_format`}}"
         }
       ],
-
+      "scsi_controller": "virtio-scsi-single",
       "qemu_agent": true,
-      "iso_file": "local:iso/CentOS-7-x86_64-Minimal-2003.iso",
+      "iso_file": "{{user `proxmox_iso_pool`}}/{{user `centos_image`}}",
       "http_directory": "config",
-      "boot_wait": "2s",
+      "boot_wait": "5s",
       "cores": "2",
       "memory": "2048",
       "boot_command": [
-        "<tab> text ks=http://{{.HTTPIP}}:{{.HTTPPort}}/ks.cfg<enter>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter>"
       ],
 
       "ssh_username": "root",
-      "ssh_timeout": "30m",
       "ssh_password": "password",
+      "ssh_port": 22,
+      "ssh_timeout": "25m",
 
       "unmount_iso": true,
-      "template_name": "Centos7PackerTemplate",
-      "template_description": "Centos7, generated on {{ isotime \"2006-01-02T15:04:05Z\" }}"
+      "template_name": "{{user `template_name`}}",
+      "template_description": "{{user `template_description`}}: generated on {{ isotime \"2006-01-02T15:04:05Z\" }}"
     }
   ]
 }
