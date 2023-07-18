@@ -1,0 +1,28 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+  storage:
+    layout:
+      name: direct
+  ssh:
+    install-server: true
+    allow-pw: true
+  packages:
+    - qemu-guest-agent
+  user-data:
+    disable_root: false
+    package_upgrade: false
+    timezone: America/New_York
+    users:
+      - name: gfranchini
+        passwd: $6$xyz$JJbmTJ7EzYLxcBOnv3bwWLhpQZ.WuX8yJkNaLKgtS747n2zUNPh8LZKhQPBnLAptBG429x5r0RJ.ZFIXiIMPw/
+        groups: [adm, cdrom, dip, plugdev, lxd, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        ssh_authorized_keys:
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPFWzUg63iJnZyAKzA1rC+iP8/rnL/t/Pxs5D947NJb giancarlo.n.franchini@gmail.com
+  

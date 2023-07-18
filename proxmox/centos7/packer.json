@@ -44,7 +44,7 @@
       "http_directory": "config",
       "boot_wait": "5s",
       "cores": "2",
-      "memory": "2048",
+      "memory": "4096",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter>"
       ],
