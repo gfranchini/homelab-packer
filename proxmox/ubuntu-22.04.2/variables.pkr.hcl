@@ -1,12 +1,12 @@
 variable "proxmox_api_url" {
-    type = string
+  type = string
 }
 
 variable "proxmox_api_token_id" {
-    type = string
+  type = string
 }
 
 variable "proxmox_api_token_secret" {
-    type = string
-    sensitive = true
+  type      = string
+  sensitive = true
 }

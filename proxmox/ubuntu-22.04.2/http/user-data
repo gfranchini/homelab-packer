@@ -10,6 +10,8 @@ autoinstall:
   ssh:
     install-server: true
     allow-pw: true
+  packages:
+    - qemu-guest-agent
   user-data:
     disable_root: false
     package_upgrade: false
@@ -23,6 +25,4 @@ autoinstall:
         shell: /bin/bash
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPFWzUg63iJnZyAKzA1rC+iP8/rnL/t/Pxs5D947NJb giancarlo.n.franchini@gmail.com
-  packages:
-    - qemu-guest-agent
   
