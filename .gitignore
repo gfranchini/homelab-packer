@@ -1,3 +1,9 @@
+.packer.d
+
+# Ignore proxmox creds
+credentials.pkr.hcl
+vars.pkrvars.hcl
+
 # Cache objects
 packer_cache/
 
