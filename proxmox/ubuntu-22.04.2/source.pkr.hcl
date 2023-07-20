@@ -44,7 +44,7 @@ source "proxmox-iso" "template" {
 
   # VM Cloud-Init Settings
   cloud_init              = true
-  cloud_init_storage_pool = "local-lvm"
+  cloud_init_storage_pool = "local-ZFS"
 
   boot_wait = "10s"
 
