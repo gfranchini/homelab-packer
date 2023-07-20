@@ -11,3 +11,7 @@ The password 'packer' used in the the `meta-data` file has been unix encrypted a
 1. `packer init`
 2. create a file `vars.pkrvars.hcl`. Add the required proxmox creds.
 3. `packer build -var-file=vars.pkrvars.hcl .`
+
+# Note
+
+In order for the auto-install to work properly, the DHCP server needs to be running on the same network that the template is being deployed on. Otherwise, the auto-install will stay stuck.
