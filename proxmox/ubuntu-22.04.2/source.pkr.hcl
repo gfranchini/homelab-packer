@@ -25,8 +25,9 @@ source "proxmox-iso" "template" {
   disks {
     disk_size    = "32G"
     format       = "raw"
-    storage_pool = "local-ZFS"
+    storage_pool = "local-zfs"
     type         = "virtio"
+    io_thread    = true
   }
 
   # VM CPU Settings
@@ -44,7 +45,7 @@ source "proxmox-iso" "template" {
 
   # VM Cloud-Init Settings
   cloud_init              = true
-  cloud_init_storage_pool = "local-ZFS"
+  cloud_init_storage_pool = "local-zfs"
 
   boot_wait = "10s"
 
@@ -61,7 +62,7 @@ source "proxmox-iso" "template" {
 
   # PACKER Autoinstall Settings
   http_directory = "http"
-  ssh_username = "gfranchini"
-  ssh_password = "packer"
-  ssh_timeout  = "120m"
+  ssh_username   = "gfranchini"
+  ssh_password   = "packer"
+  ssh_timeout    = "120m"
 }

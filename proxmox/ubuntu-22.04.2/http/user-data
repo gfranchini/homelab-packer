@@ -1,7 +1,7 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: en_US
+  locale: en_US.UTF-8
   keyboard:
     layout: us
   storage:
@@ -12,6 +12,7 @@ autoinstall:
     allow-pw: true
   packages:
     - qemu-guest-agent
+  package_upgrade: false
   user-data:
     disable_root: false
     package_upgrade: false
