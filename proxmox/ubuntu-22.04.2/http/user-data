@@ -12,6 +12,8 @@ autoinstall:
     allow-pw: true
   packages:
     - qemu-guest-agent
+    - zip
+    - lsb-core
   package_upgrade: false
   user-data:
     disable_root: false
